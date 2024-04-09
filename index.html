@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House Rent Prediction</title>
+    <link rel="stylesheet" href="static\index.css">
+
+</head>
+
+<body>
+    <form id="form" method="POST" action="/predict">
+        <label id="lab" style="color: #0c7b9c;">Select a City</label>
+        <select name="city" id="city">
+            <option value="kolkata">Kolkata</option>
+            <option value="salem">Salem</option>
+            <option value="coimbatore">Coimbatore</option>
+            <option value="bangalore">Bangalore</option>
+            <option value="dindigul">Dindigul</option>
+            <option value="chennai">Chennai</option>
+        </select>
+        <div id="street">
+            <!-- Street names dropdown will be displayed here -->
+        </div>
+
+        <label id="lab" style="color: #0c7b9c;">Property Type</label>
+        <select name="propertytype" id="propertytype">
+            <option value="Apartment">Apartment</option>
+            <option value="Independent House">Independent House</option>
+        </select>
+
+        <div id="propertytypeOptions">
+            <!-- House type specific options will be displayed here -->
+        </div>
+
+        <script>
+            var city = document.getElementById("city");
+            var street = document.getElementById("street");
+        
+            city.addEventListener("change", function() {
+                var selectedCity = city.value;
+                street.innerHTML = "";
+
+                if (selectedCity === "kolkata") {
+                    var streetNames = ["Ajoy Nagar", "Anandapur", "Anandapur",, "Amtala", "Ashok Nagar", "Avenue S", "Bagbazar", "Baguiati", "Baguiati", "Baksara", "Ballygunge", "Bandel", "Bandel", "Barasat", "Baruipur", "Baruipur", "Baruipur", "Behala", "Behala", "Behala", "Behala", "Behala", "Behala", "Behala", "Behala Chowrasta", "Behala Chowrasta", "Beliaghata", "Bhadrakali", "Bansdroni", "Bansdroni", "Bansdroni", "Baishnavghata patuli", "Chandannagar", "chatana", "Chinar Park", "Chitlapakkam", "Choolaimedu", "Choolaimedu", "Chromepet", "Dakshineswar", "Diamond Harbour Road", "Dum Dum", "Dum Dum", "Dum Dum Heights", "Dumdum Park", "Dumdum Park", "Dumdum Park", "Dumdum Park", "Entally", "Garia", "Garia Dhalua Nabapally", "Garia Station", "Garia Station", "Garia Station", "Hazra", "Hooghly-Chinsurah", "Hooghly-Chinsurah", "Ilupaimaram Nagar", "Iyyappanthangal", "Jadavpur", "Jadavpur", "Jadavpur University", "Joka", "Kakkan Nagar", "Kaliamman Kovil Street", "Kalikapur", "Kasba", "Kasba", "Kasba", "Kasba -East", "Keshtopur", "Keshtopur", "Kil Ayanambakkam", "Kil Ayanambakkam", "KK Nagar", "Kodalia", "Kodambakkam", "Konnagar", "Korattur", "Korattur", "Korattur", "Laketown", "Maddilapalem", "Madhanandapuram", "Madipakkam", "Malancha", "Malancha", "Marathahalli", "Mengles Road", "Mengles Road", "MG Road", "Mukundapur", "Mugalivakkam", "N.K.B. Nagar", "Naihati", "Naihati", "Nanganallur", "Natunhat", "Navalur", "Nehru Park Road", "New Barrakpur", "New Garia", "Nungambakkam", "Ottanchattaram", "Palm Avenue Kolkata", "Palani", "Pancha Sayar", "Parnashree Lake", "Paschim Barisha", "Patuli", "Patuli", "Peelamedu Road", "Perungudi", "Phool Bagan", "Porur", "Pratiraksha Nagar", "Pudur", "Purasaiwakkam", "Rabindra Pally", "Rabindra Pally", "Rabindra Pally", "Rabindra Sarobar Area", "RA Puram", "Rajarhat", "Rajarhat", "Rajarhat", "Rajarhat Newtown", "Ramnagar Road", "Rani Bazar", "Sakher Bazar", "Sakher Bazar", "Salt Lake City", "Salt Lake City", "Salt Lake City", "Salt Lake City", "Salt Lake City", "Salt Lake City", "Salt Lake City", "Salt Lake City", "Salt Lake City", "Santoshpur", "Santoshpur", "Saibaba Colony", "Sarsuna", "Saveriyar Palayam", "Saveriyar Palayam", "Saveriyar Palayam", "Saveriyar Palayam", "Sembakkam", "Shrachi Village", "Shyam Bazar", "Shyam Bazar", "Shyam Bazar", "Shyam Bazar", "Sithalapakkam", "Sonarpur", "Sonarpur", "Sonarpur", "South Baksara", "South Dum Dum", "Sreebhumi", "Sreebhumi", "Sreebhumi", "Suramangalam", "Thakurpukur", "Thakurpukur", "Thakurpukur", "Thakurpukur", "Thakurpukur", "Thakurpukur", "Tiljala Road", "Valamudan", "Valasaravakkam", "Valasaravakkam", "Valasaravakkam", "Vaanagaram", "Vaanagaram", "Vip Road", "Vip Road", "Vip Road", "West Mambalam", "West Saidapet", "Yercaud", "ukadam"];
+                } else if (selectedCity === "salem") {
+                    var streetNames = ["Annadhanapatti",
+                    "Suramangalam",
+                    "Shevapet",
+                    "Hasthampatti",
+                    "Suramangalam",
+                    "Ammapetta",
+                    "Ammapetta",
+                    "Alagapuram Pudur",
+                    "Hasthampatti",
+                    "Alagapuram Pudur",
+                    "Shevapet",
+                    "Chinna Thirupathi",
+                    "Fairlands",
+                    "Arisipalayam",
+                    "Arisipalayam",
+                    "Kandhampatty",
+                    "Dasanaikenpatty",
+                    "Suramangalam",
+                    "Meyyanur",
+                    "Swaminathapuram"
+                    ]
+                } else if (selectedCity === "bangalore") {
+                    var streetNames = ["Basavanagud", "Bellandur", "Brigade Road", "Church Street", "Cunningham Road", "Indiranagar", "Jayanagar", "Koramangala", "Lavelle Road", "Marathahalli", "MG Road", "Sarjapur Road", "Sarjapur Road", "VV Puram"];/* List shortened for brevity */ 
+                } else if (selectedCity === "chennai") {
+                    var streetNames = ["Adyar", "Anna Nagar East", "Anna Nagar West","Arumbakkam", "Ashok Nagar", "Chitlapakkam", "Choolaimedu", "Choolaimedu", "Chromepet", "Dash Drone", "Egatoor", "Egattur", "Hazra", "Iyyappanthangal", "Karapakkam", "Kasba", "Kasba", "Kattupakkam", "Kil Ayanambakkam", "Kil Ayanambakkam", "KK Nagar", "Kodambakkam", "Korattur", "Korattur", "Korattur", "Madhanandapuram", "Madipakkam", "Mugalivakkam", "Mugalivakkam", "Mukundapur", "Nanganallur", "Navalur", "Nungambakkam", "Purasaiwakkam", "Raja Annamalai Puram"]; /* List shortened for brevity */ 
+                } else if (selectedCity === "coimbatore") {
+                    var streetNames = ["Avinashi Road", "Mettupalayam Road", "Nehru Park Road", "Oppanakara Street", "Peelamedu Road", "RS Puram Road", "Saibaba Colony", "Suguna Street", "ukadam"];/* List shortened for brevity */ 
+                } else if (selectedCity === "dindigul") {
+                    var streetNames = ["Arockiamadha Street", "Bavasha Street", "Enamel Factory Road", "Ilupaimaram Nagar", "Kaliamman Kovil Street", "Kakkan Nagar", "Mengles Road", "Nariparai", "Nethaji Nagar", "Ottanchattaram", "Palani", "Post Office Road", "Ramnagar Road", "Saveriyar Palayam", "Saveriyar Palayam"];/* List shortened for brevity */ 
+                } else {
+                    street.innerHTML = "<p>Please select a city to see its streets.</p>";
+                    return;
+                }
+                
+                var streetDropdown = document.createElement("select");
+                for (var i = 0; i < streetNames.length; i++) {
+                    var option = document.createElement("option");
+                    option.text = streetNames[i];
+                    streetDropdown.add(option);
+                }
+                street.appendChild(streetDropdown);
+            });
+
+            var houseTypeSelect = document.getElementById("propertytype");
+            var houseTypeOptions = document.getElementById("propertytypeOptions");
+
+            // Function to show options based on selected house type
+            function showHouseTypeOptions() {
+                var selectedHouseType = houseTypeSelect.value;
+                houseTypeOptions.innerHTML = "";
+
+                if (selectedHouseType === "Apartment") {
+                    var bhkOptions = ["1 BHK", "2 BHK", "3 BHK", "4 BHK", "5+ BHK"];
+                    var bhkSelect = document.createElement("select");
+                    bhkSelect.name = "bhk";
+                    bhkSelect.id = "bhk";
+                    for (var i = 0; i < bhkOptions.length; i++) {
+                        var option = document.createElement("option");
+                        option.text = bhkOptions[i];
+                        bhkSelect.add(option);
+                    }
+                    houseTypeOptions.appendChild(bhkSelect);
+                } else if (selectedHouseType === "Independent House") {
+                    var propertyOptions = ["Rent", "Buy", "Lease"];
+                    var propertySelect = document.createElement("select");
+                    propertySelect.name = "propertyType";
+                    propertySelect.id = "propertyType";
+                    for (var i = 0; i < propertyOptions.length; i++) {
+                        var option = document.createElement("option");
+                        option.text = propertyOptions[i];
+                        propertySelect.add(option);
+                    }
+                    houseTypeOptions.appendChild(propertySelect);
+                }
+            }
+
+            // Trigger showHouseTypeOptions() when house type is selected
+            houseTypeSelect.addEventListener("change", showHouseTypeOptions);
+        </script>
+
+
+        <label id="lab" style="color: #0c7b9c;">Parking</label>
+        <select name="parking" id="parking">
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+        <label id="lab" style="color: #0c7b9c;">current supply</label>
+        <select name="currentsupply" id="currentsupply">
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+
+
+        <label id="lab" style="color: #0c7b9c;">Water Supply</label>
+        <select name="watersupply" id="watersupply">
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+
+        <input id="btn" type="submit" value="Predict"></button>
+    </form>
+</body>
+</html>
